@@ -1,0 +1,59 @@
+<!-- app/views/agreements/index.html.erb -->
+<div class="min-h-screen bg-gray-100 py-10 px-6">
+  <div class="max-w-7xl mx-auto bg-white shadow-2xl rounded-2xl p-8 border border-gray-200">
+    <div class="flex items-center justify-between mb-8">
+      <h1 class="text-3xl font-bold text-gray-800">📄 Список договоров</h1>
+
+      <%= link_to "← На главную", root_path,
+                  class: "text-sm font-semibold text-blue-600 hover:text-blue-800 transition" %>
+    </div>
+
+    <% if @agreements.any? %>
+      <div class="overflow-x-auto rounded-lg border border-gray-300">
+        <table class="min-w-full border-collapse bg-white text-sm">
+          <thead class="bg-gray-100 border-b border-gray-300">
+          <tr>
+            <th class="px-5 py-3 text-left font-semibold text-gray-700 border-r border-gray-300">#</th>
+            <th class="px-5 py-3 text-left font-semibold text-gray-700 border-r border-gray-300">Номер договора</th>
+            <th class="px-5 py-3 text-left font-semibold text-gray-700 border-r border-gray-300">ИИН клиента</th>
+            <th class="px-5 py-3 text-left font-semibold text-gray-700 border-r border-gray-300">Организация</th>
+            <th class="px-5 py-3 text-left font-semibold text-gray-700 border-r border-gray-300">Дата создания</th>
+            <th class="px-5 py-3 text-left font-semibold text-gray-700">Документы</th>
+          </tr>
+          </thead>
+
+          <tbody class="divide-y divide-gray-200">
+          <% @agreements.each_with_index do |agreement, index| %>
+            <tr class="hover:bg-gray-50 transition">
+              <td class="px-5 py-4 text-gray-700 border-r border-gray-300"><%= index + 1 %></td>
+              <td class="px-5 py-4 font-medium text-gray-900 border-r border-gray-300"><%= agreement.number %></td>
+              <td class="px-5 py-4 text-gray-700 border-r border-gray-300"><%= agreement.client_identification_no %></td>
+              <td class="px-5 py-4 text-gray-700 border-r border-gray-300"><%= agreement.organization&.name || "—" %></td>
+              <td class="px-5 py-4 text-gray-700 border-r border-gray-300"><%= l(agreement.created_at, format: :short) %></td>
+              <td class="px-5 py-4 text-gray-700">
+                <% if agreement.documents.attached? %>
+                  <ul class="space-y-1">
+                    <% agreement.documents.each do |doc| %>
+                      <li>
+                        <%= link_to doc.filename.to_s, url_for(doc),
+                                    target: "_blank",
+                                    class: "text-blue-600 hover:text-blue-800 font-medium" %>
+                      </li>
+                    <% end %>
+                  </ul>
+                <% else %>
+                  <span class="text-gray-400 italic">Нет файлов</span>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+          </tbody>
+        </table>
+      </div>
+    <% else %>
+      <div class="text-center py-16 text-gray-500 border border-dashed border-gray-300 rounded-lg mt-8">
+        <p class="text-lg">Нет доступных договоров.</p>
+      </div>
+    <% end %>
+  </div>
+</div>

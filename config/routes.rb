@@ -13,6 +13,8 @@
   # Defines the root path route ("/")
   root "home#index"
 
+  resources :agreements, only: [:index]
+
   authenticate :user do
     mount Avo::Engine, at: Avo.configuration.root_path
   end
