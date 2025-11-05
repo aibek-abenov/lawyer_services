@@ -1,4 +1,5 @@
 class Avo::Resources::Agreement < Avo::BaseResource
+  self.title = :number
   # self.includes = []
   # self.attachments = []
   # self.search = {
@@ -10,5 +11,6 @@ class Avo::Resources::Agreement < Avo::BaseResource
     field :number, as: :text
     field :client_identification_no, as: :text
     field :organization, as: :belongs_to
+    field :documents, as: :files, is_image: false, link_to_resource: true
   end
 end

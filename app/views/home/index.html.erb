@@ -1,1 +1,75 @@
-Hey there
+<!-- app/views/home/index.html.erb -->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Legal Services Portal</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+      body {
+          font-family: 'Inter', system-ui, sans-serif;
+          background-color: #f9fafb;
+          color: #1f2937;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          height: 100vh;
+          margin: 0;
+      }
+
+      h1 {
+          font-size: 2rem;
+          color: #111827;
+          margin-bottom: 1rem;
+      }
+
+      p {
+          font-size: 1.1rem;
+          color: #4b5563;
+          margin-bottom: 2rem;
+          text-align: center;
+          max-width: 500px;
+      }
+
+      .links {
+          display: flex;
+          gap: 1rem;
+      }
+
+      a {
+          text-decoration: none;
+          background-color: #2563eb;
+          color: white;
+          padding: 0.75rem 1.5rem;
+          border-radius: 8px;
+          transition: background-color 0.3s ease;
+      }
+
+      a:hover {
+          background-color: #1d4ed8;
+      }
+
+      footer {
+          position: absolute;
+          bottom: 1rem;
+          font-size: 0.9rem;
+          color: #9ca3af;
+      }
+  </style>
+</head>
+
+<body>
+<h1>Добро пожаловать в Legal Services Portal</h1>
+<p>
+  Это внутренний портал для работы с договорами и данными клиентов.<br>
+  Вы можете перейти в административную панель или просмотреть список договоров.
+</p>
+
+<div class="links">
+  <%= link_to "Перейти в админ-панель (Avo)", "/avo" %>
+  <%#= link_to "Список договоров", agreements_path %>
+</div>
+
+<footer>© <%= Time.current.year %> Legal Services App</footer>
+</body>
+</html>

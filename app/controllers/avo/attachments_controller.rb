@@ -1,0 +1,1 @@
+class Avo::AttachmentsController < Avo::BaseAuthorizedController; end

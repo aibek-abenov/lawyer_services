@@ -5,4 +5,12 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   belongs_to :role
+
+  def admin?
+    role&.name == "Admin"
+  end
+
+  def viewer?
+    role&.name == "Viewer"
+  end
 end
